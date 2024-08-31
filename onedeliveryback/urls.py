@@ -16,8 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class APIRootView(APIView):
+    def get(self, request, *args, **kwargs):
+        return Response({
+            'fooditems': request.build_absolute_uri('/fooditems/'),
+            'fooditem-detail': request.build_absolute_uri('/fooditems/<int:pk>/'),
+            'orders': request.build_absolute_uri('/orders/'),
+            'register': request.build_absolute_uri('/register/'),
+            'login': request.build_absolute_uri('/login/'),
+            'logout': request.build_absolute_uri('/logout/'),
+        })
 
 urlpatterns = [
+    path('', APIRootView.as_view(), name='api-root'),
     path('admin/', admin.site.urls),
     path('api/', include('user.urls')),
     path('api/', include('foodItem.urls')),
