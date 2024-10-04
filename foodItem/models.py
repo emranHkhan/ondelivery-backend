@@ -1,16 +1,18 @@
 from django.db import models
+from restaurant.models import Restaurant
+from category.models import Category
 
 class FoodItem(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    category = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
-    ingredients = models.JSONField()  # You can use ArrayField if using PostgreSQL
+    ingredients = models.JSONField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='food_items')
     image_url = models.URLField(max_length=500)
-    ratings = models.DecimalField(max_digits=3, decimal_places=2)
-    tags = models.JSONField()  # Or ArrayField for PostgreSQL
-    dietary_info = models.JSONField()  # Or ArrayField for PostgreSQL
+    tags = models.JSONField()
+    dietary_info = models.JSONField()
+    restaurants = models.ManyToManyField(Restaurant, related_name='food_items', blank=True)
 
     def __str__(self):
         return self.name

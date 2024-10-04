@@ -39,11 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
-    'user',
-    'order',
-    'foodItem',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
+    
+    'user',
+    'order',
+    'restaurant',
+    'category',
+    'foodItem',
+    'review'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +79,12 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 WSGI_APPLICATION = 'onedeliveryback.wsgi.application'
 
@@ -130,4 +141,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://ondelivery-backend.onrender.com']
+# CSRF_TRUSTED_ORIGINS = ['https://ondelivery-backend.onrender.com']

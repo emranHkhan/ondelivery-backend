@@ -1,3 +1,4 @@
+
 from rest_framework import generics
 from django_filters import rest_framework as filters
 from .models import FoodItem
@@ -5,10 +6,11 @@ from .serializers import FoodItemSerializer
 
 class FoodItemFilter(filters.FilterSet):
     category = filters.CharFilter(field_name='category', lookup_expr='iexact')
+    restaurant_name = filters.CharFilter(field_name='restaurants__name', lookup_expr='iexact')
 
     class Meta:
         model = FoodItem
-        fields = ['category']
+        fields = ['category', 'restaurant_name']
 
 class FoodItemListView(generics.ListCreateAPIView):
     queryset = FoodItem.objects.all()

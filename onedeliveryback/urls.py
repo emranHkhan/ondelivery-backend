@@ -22,12 +22,13 @@ from rest_framework.views import APIView
 class APIRootView(APIView):
     def get(self, request, *args, **kwargs):
         return Response({
-            'fooditems': request.build_absolute_uri('/fooditems/'),
-            'fooditem-detail': request.build_absolute_uri('/fooditems/<int:pk>/'),
-            'orders': request.build_absolute_uri('/orders/'),
-            'register': request.build_absolute_uri('/register/'),
-            'login': request.build_absolute_uri('/login/'),
-            'logout': request.build_absolute_uri('/logout/'),
+            'fooditems': request.build_absolute_uri('/api/fooditems/'),
+            'fooditem-detail': request.build_absolute_uri('/api/fooditems/<int:pk>/'),
+            'orders': request.build_absolute_uri('/api/orders/'),
+            'orders': request.build_absolute_uri('/api/restaurants/'),
+            'register': request.build_absolute_uri('/api/register/'),
+            'login': request.build_absolute_uri('/api/login/'),
+            'logout': request.build_absolute_uri('/api/logout/'),
         })
 
 urlpatterns = [
@@ -36,4 +37,7 @@ urlpatterns = [
     path('api/', include('user.urls')),
     path('api/', include('foodItem.urls')),
     path('api/', include('order.urls')),
+    path('api/', include('restaurant.urls')),
+    path('api/', include('category.urls')),
+    path('api/', include('review.urls')),
 ]
