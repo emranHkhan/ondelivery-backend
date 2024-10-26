@@ -11,10 +11,7 @@ class RegistrationView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            user = User.objects.get(username=request.data['username'])
-            user.set_password(request.data['password'])
-            user.save()
+            user = serializer.save()
             token = Token.objects.create(user=user)
             return Response({'token': token.key, 'user': serializer.data})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -32,6 +29,7 @@ class LoginView(APIView):
         token, created = Token.objects.get_or_create(user=user)
         serializer = UserSerializer(user)
         return Response({'token': token.key, 'user': serializer.data})
+
 
 class LogoutView(APIView):
     authentication_classes = [TokenAuthentication]

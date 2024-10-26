@@ -3,11 +3,14 @@ from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    role = serializers.ChoiceField(choices=[('admin', 'admin'), ('user', 'user')], write_only=True)
+    role = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'role']
+
+    def get_role(self, obj):
+        return 'admin' if obj.is_staff else 'user'
 
     def create(self, validated_data):
         role = validated_data.pop('role')
