@@ -17,7 +17,7 @@ This API provides endpoints for managing a restaurant system, including users, f
 
 ## Base URL
 ```
-http://your-domain.com/api/
+https://ondelivery-backend.vercel.app/api/
 ```
 
 ## Authentication
