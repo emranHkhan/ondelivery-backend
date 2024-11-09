@@ -54,6 +54,17 @@ INSTALLED_APPS = [
     'review'
 ]
 
+STRIPE_SECRET_KEY = 'sk_test_51Ie8TMEsYXQrLzkY5UFZpzCDy0Oz62WMSINPXYGOmr0PAzHskBYtGa6uKpkdPWinUB34otziah71S4ET3v1YYpUF003CUW81D7'
+STRIPE_PUBLIC_KEY = 'pk_test_51Ie8TMEsYXQrLzkYabVjvvNXN0QPDQ005C1kLJ8vH2UvasT3lpBFV1indNxdiAWnlAC5JoESnH1bT7ukRMDvPwqw00JY8S5Q5c'
+
+# settings.py
+
+# from decouple import config
+
+# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+# STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",

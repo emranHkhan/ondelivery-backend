@@ -8,10 +8,10 @@ class FoodItem(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     availability = models.BooleanField(default=True)
     ingredients = models.JSONField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='food_items')
     image_url = models.URLField(max_length=500)
     tags = models.JSONField()
     dietary_info = models.JSONField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='food_items')
     restaurants = models.ManyToManyField(Restaurant, related_name='food_items', blank=True)
 
     def __str__(self):
